@@ -46,6 +46,9 @@ io.sockets.on('connection',(socket) =>{
 	socket.on('message',(room,data) =>{
 		socket.to(room).emit('message',room,data);
 	});
+	 socket.on('invite',(room) =>{
+ 51             socket.broadcast.emit('invited',room,socket.id);
+ 52         });
 	socket.on('join',(room) =>{
 		socket.join(room);
 		var myRoom=io.sockets.adapter.rooms[room];
